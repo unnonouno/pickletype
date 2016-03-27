@@ -29,6 +29,9 @@ class TestPickleType(unittest.TestCase):
     def test_int_tuple(self):
         self.assertEqual(pt.get_type((1,)), (int,))
 
+    def test_long_int_tuple(self):
+        self.assertEqual(pt.get_type((1, 2)), pt.Tuple(int))
+
     def test_str_tuple_tuple(self):
         self.assertEqual(pt.get_type(((1,),)), ((int,),))
 
@@ -52,6 +55,20 @@ class TestList(unittest.TestCase):
 
     def test_str(self):
         self.assertEqual(str(self.typ), 'list(<type \'int\'>)')
+
+
+class TestTuple(unittest.TestCase):
+
+    def setUp(self):
+        self.typ = pt.Tuple(int)
+
+    def test_eq(self):
+        self.assertEqual(self.typ, pt.Tuple(int))
+        self.assertNotEqual(self.typ, pt.Tuple(str))
+        self.assertNotEqual(self.typ, int)
+
+    def test_str(self):
+        self.assertEqual(str(self.typ), 'tuple(<type \'int\'>)')
 
 
 class TestDict(unittest.TestCase):

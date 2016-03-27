@@ -10,6 +10,18 @@ class List(object):
         return 'list({})'.format(self.typ)
 
 
+class Tuple(object):
+
+    def __init__(self, typ):
+        self.typ = typ
+
+    def __eq__(self, rhs):
+        return isinstance(rhs, Tuple) and rhs.typ == self.typ
+
+    def __str__(self):
+        return 'tuple({})'.format(self.typ)
+
+
 class Dict(object):
     def __init__(self, key_type, value_type):
         self.key_type = key_type
@@ -33,7 +45,11 @@ def get_type(data):
             return typs
 
     elif isinstance(data, tuple):
-        return tuple(get_type(x) for x in data)
+        typs = tuple(get_type(x) for x in data)
+        if len(typs) > 1 and all(t == typs[0] for t in typs):
+            return Tuple(typs[0])
+        else:
+            return typs
 
     elif isinstance(data, dict):
         key_types = [get_type(k) for k in data.keys()]
