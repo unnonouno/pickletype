@@ -31,3 +31,10 @@ class TestPickleType(unittest.TestCase):
 
     def test_str_tuple_tuple(self):
         self.assertEqual(pt.get_type(((1,),)), ((int,),))
+
+    def test_empty_dict(self):
+        self.assertEqual(pt.get_type({}), dict)
+
+    def test_dict(self):
+        x = {'x': 1, 'y': 2}
+        self.assertEqual(pt.get_type(x), pt.Dict(str, int))
