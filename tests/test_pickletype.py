@@ -50,6 +50,9 @@ class TestList(unittest.TestCase):
         self.assertNotEqual(self.typ, pt.List(str))
         self.assertNotEqual(self.typ, int)
 
+    def test_str(self):
+        self.assertEqual(str(self.typ), 'list(<type \'int\'>)')
+
 
 class TestDict(unittest.TestCase):
 
@@ -61,3 +64,6 @@ class TestDict(unittest.TestCase):
         self.assertNotEqual(self.typ, pt.Dict(str, str))
         self.assertNotEqual(self.typ, pt.Dict(int, int))
         self.assertNotEqual(self.typ, int)
+
+    def test_str(self):
+        self.assertEqual(str(self.typ), 'dict(<type \'str\'>, <type \'int\'>)')

@@ -6,6 +6,9 @@ class List(object):
     def __eq__(self, rhs):
         return isinstance(rhs, List) and rhs.typ == self.typ
 
+    def __str__(self):
+        return 'list({})'.format(self.typ)
+
 
 class Dict(object):
     def __init__(self, key_type, value_type):
@@ -16,6 +19,9 @@ class Dict(object):
         return (isinstance(rhs, Dict) and
                 rhs.key_type == self.key_type and
                 rhs.value_type == self.value_type)
+
+    def __str__(self):
+        return 'dict({}, {})'.format(self.key_type, self.value_type)
 
 
 def get_type(data):
