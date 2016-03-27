@@ -17,6 +17,9 @@ class TestPickleType(unittest.TestCase):
     def test_int_list(self):
         self.assertEqual(pt.get_type([1]), [int])
 
+    def test_long_int_list(self):
+        self.assertEqual(pt.get_type([1, 2, 3]), pt.List(int))
+
     def test_str_list_list(self):
         self.assertEqual(pt.get_type([['x']]), [[str]])
 
