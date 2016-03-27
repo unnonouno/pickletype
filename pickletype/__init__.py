@@ -6,7 +6,7 @@ class List(object):
     def __eq__(self, rhs):
         return isinstance(rhs, List) and rhs.typ == self.typ
 
-    def __str__(self):
+    def __repr__(self):
         return 'list({})'.format(self.typ)
 
 
@@ -18,7 +18,7 @@ class Tuple(object):
     def __eq__(self, rhs):
         return isinstance(rhs, Tuple) and rhs.typ == self.typ
 
-    def __str__(self):
+    def __repr__(self):
         return 'tuple({})'.format(self.typ)
 
 
@@ -32,7 +32,7 @@ class Dict(object):
                 rhs.key_type == self.key_type and
                 rhs.value_type == self.value_type)
 
-    def __str__(self):
+    def __repr__(self):
         return 'dict({}, {})'.format(self.key_type, self.value_type)
 
 
